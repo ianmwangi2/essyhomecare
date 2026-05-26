@@ -13,8 +13,8 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-    "typeRoots": ["./node_modules/@types"],
-    "moduleResolution": "node16"
+    "moduleResolution": "node16",
+    "types": ["node", "express", "cors"]
   },
   "include": ["src"],
   "exclude": ["node_modules"]

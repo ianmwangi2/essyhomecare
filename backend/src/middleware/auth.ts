@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from 'express'
 
-export interface AuthRequest<P = Record<string, any>, ResBody = any, ReqBody = any, ReqQuery = any>
-  extends Request<P, ResBody, ReqBody, ReqQuery> {
-  user?: {
-    id: string
-    email: string
-    role: string
+export type AuthRequest<P = Record<string, any>, ResBody = any, ReqBody = any, ReqQuery = any> =
+  Request<P, ResBody, ReqBody, ReqQuery> & {
+    user?: {
+      id: string
+      email: string
+      role: string
+    }
   }
-}
 
 const fetchSupabaseUser = async (token: string) => {
   const supabaseUrl = process.env.SUPABASE_URL
