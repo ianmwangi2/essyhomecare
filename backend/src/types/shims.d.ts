@@ -1,8 +1,6 @@
-// Minimal shims to satisfy TypeScript for environment variables during CI
-// Avoid broad module shims that conflict with @types/express/@types/cors
-
-// Ensure `process` name is available during builds
-declare var process: NodeJS.Process;
+// Project-local shims.
+// Keep this file *only* for `process.env` typing.
+// Do NOT declare blanket modules like `express` / `cors`, otherwise it can break the real types.
 
 declare global {
   namespace NodeJS {
@@ -18,3 +16,4 @@ declare global {
 }
 
 export {}
+
