@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 
-export interface AuthRequest extends Request {
+export interface AuthRequest<P = Record<string, any>, ResBody = any, ReqBody = any, ReqQuery = any>
+  extends Request<P, ResBody, ReqBody, ReqQuery> {
   user?: {
     id: string
     email: string

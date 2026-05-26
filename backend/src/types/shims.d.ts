@@ -1,19 +1,8 @@
-// Minimal shims to satisfy TypeScript during CI when @types/* may not be installed
-declare module 'express'
-declare module 'cors'
-declare module 'multer'
+// Minimal shims to satisfy TypeScript for environment variables during CI
+// Avoid broad module shims that conflict with @types/express/@types/cors
 
-// Ensure `process` name is available during builds without @types/node
+// Ensure `process` name is available during builds
 declare var process: NodeJS.Process;
-
-// Augment Express Request with commonly used properties to avoid TS errors
-declare namespace Express {
-  interface Request {
-    body?: any
-    params?: any
-    headers?: Record<string, any>
-  }
-}
 
 declare global {
   namespace NodeJS {
