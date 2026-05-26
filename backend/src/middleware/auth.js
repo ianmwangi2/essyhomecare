@@ -1,5 +1,3 @@
-import fetch from 'node-fetch'
-
 export const authenticateToken = async (req, res, next) => {
   const authHeader = req.headers?.authorization
   const token = authHeader?.split(' ')[1]

@@ -8,6 +8,7 @@ import referralRoutes from './routes/referrals.js'
 import jobRoutes from './routes/jobs.js'
 import applicationRoutes from './routes/applications.js'
 import contactRoutes from './routes/contacts.js'
+import uploadRoutes from './routes/uploads.js'
 import adminRoutes from './routes/admin.js'
 
 dotenv.config()
@@ -36,6 +37,7 @@ app.use('/api/referrals', referralRoutes)
 app.use('/api/jobs', jobRoutes)
 app.use('/api/applications', applicationRoutes)
 app.use('/api/contacts', contactRoutes)
+app.use('/api/uploads', uploadRoutes)
 app.use('/api/admin', authenticateToken, adminRoutes)
 
 // Error handler
