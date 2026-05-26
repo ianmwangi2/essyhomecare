@@ -13,8 +13,7 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-    "moduleResolution": "node16",
-    "types": ["node", "express", "cors"]
+    "moduleResolution": "node16"
   },
   "include": ["src"],
   "exclude": ["node_modules"]
