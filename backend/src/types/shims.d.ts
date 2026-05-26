@@ -3,6 +3,18 @@ declare module 'express'
 declare module 'cors'
 declare module 'multer'
 
+// Ensure `process` name is available during builds without @types/node
+declare var process: NodeJS.Process;
+
+// Augment Express Request with commonly used properties to avoid TS errors
+declare namespace Express {
+  interface Request {
+    body?: any
+    params?: any
+    headers?: Record<string, any>
+  }
+}
+
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
