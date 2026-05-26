@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold;
+  }
+  
+  body {
+    @apply font-sans text-text;
+  }
+  
+  button {
+    @apply transition-colors duration-200;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-green text-white rounded-full font-semibold hover:bg-opacity-90 transition-all duration-200;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 bg-teal text-white rounded-full font-semibold hover:bg-opacity-90 transition-all duration-200;
+  }
+  
+  .btn-outline {
+    @apply px-6 py-3 border-2 border-teal text-teal rounded-full font-semibold hover:bg-teal hover:text-white transition-all duration-200;
+  }
+  
+  .section-heading {
+    @apply text-3xl md:text-4xl font-heading font-bold text-primary mb-4;
+  }
+  
+  .card {
+    @apply bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4BBDCC;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1A2A3B;
+}
