@@ -16,9 +16,19 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
       
       if (!session) {
         navigate('/admin-login')
-      } else {
-        setIsAuthenticated(true)
+        return
       }
+
+      // Verify admin role
+      const role = session.user?.user_metadata?.role || session.user?.app_metadata?.role
+      if (role !== 'admin') {
+        console.warn('Non-admin user attempted to access admin panel')
+        await supabase.auth.signOut()
+        navigate('/admin-login')
+        return
+      }
+
+      setIsAuthenticated(true)
     }
 
     checkAuth()
@@ -29,7 +39,15 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
         setIsAuthenticated(false)
         navigate('/admin-login')
       } else {
-        setIsAuthenticated(true)
+        // Verify admin role on every auth change
+        const role = session.user?.user_metadata?.role || session.user?.app_metadata?.role
+        if (role !== 'admin') {
+          setIsAuthenticated(false)
+          supabase.auth.signOut()
+          navigate('/admin-login')
+        } else {
+          setIsAuthenticated(true)
+        }
       }
     })
 

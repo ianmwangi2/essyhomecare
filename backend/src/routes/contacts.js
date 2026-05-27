@@ -1,30 +1,37 @@
 import express from 'express'
 import { supabase } from '../lib/supabase.js'
+import { validateContact } from '../lib/validators.js'
 import axios from 'axios'
 
 const router = express.Router()
 
 router.post('/', async (req, res, next) => {
   try {
-    const payload = req.body
-    const { data, error } = await supabase.from('contacts').insert(payload).select()
+    const { valid, errors, data } = validateContact(req.body)
+    if (!valid) return res.status(400).json({ error: errors.join(', ') })
+
+    const { data: created, error } = await supabase.from('contacts').insert(data).select()
     if (error) return next(error)
 
-    // optionally send notification email via Resend if configured
-    try {
-      if (process.env.RESEND_API_KEY) {
+    if (process.env.RESEND_API_KEY) {
+      try {
         await axios.post('https://api.resend.com/emails', {
           from: 'no-reply@essyhomecare.com',
           to: ['admin@essyhomecare.com'],
           subject: 'New contact form submission',
-          html: `<p>New contact from ${payload.name} - ${payload.email}</p><pre>${JSON.stringify(payload, null, 2)}</pre>`
+          html: `
+            <p><strong>Name:</strong> ${data.name}</p>
+            <p><strong>Email:</strong> ${data.email}</p>
+            <p><strong>Message:</strong></p>
+            <p>${data.message}</p>
+          `
         }, { headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, 'Content-Type': 'application/json' } })
+      } catch (emailErr) {
+        console.warn('Resend email failed', emailErr?.message || emailErr)
       }
-    } catch (e) {
-      console.warn('Resend email failed', e?.message)
     }
 
-    res.status(201).json(data)
+    res.status(201).json(created)
   } catch (err) { next(err) }
 })
 

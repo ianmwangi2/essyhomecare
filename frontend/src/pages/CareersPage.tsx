@@ -1,6 +1,7 @@
 import { useState, useEffect, type FormEvent } from 'react'
 import { Briefcase, Heart, Users, Clock3, BookOpen, Trophy, ChevronDown } from 'lucide-react'
 import apiClient from '@/lib/api'
+import FileUpload from '@/components/FileUpload'
 
 interface Job {
   id: string
@@ -15,6 +16,8 @@ export default function CareersPage() {
   const [loading, setLoading] = useState(true)
   const [expandedJob, setExpandedJob] = useState<string | null>(null)
   const [selectedJobId, setSelectedJobId] = useState<string | null>(null)
+  const [resumeUrl, setResumeUrl] = useState('')
+  const [uploadMessage, setUploadMessage] = useState('')
   const [applicationError, setApplicationError] = useState('')
   const [applicationMessage, setApplicationMessage] = useState('')
   const [applicationForm, setApplicationForm] = useState({
@@ -113,6 +116,15 @@ export default function CareersPage() {
     setApplicationForm((current) => ({ ...current, [field]: value }))
   }
 
+  const handleUploadSuccess = (result: { publicUrl: string }) => {
+    setResumeUrl(result.publicUrl)
+    setUploadMessage('Resume uploaded successfully.')
+  }
+
+  const handleUploadError = (message: string) => {
+    setUploadMessage(`Upload failed: ${message}`)
+  }
+
   const handleSubmitApplication = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (!selectedJobId) {
@@ -126,10 +138,13 @@ export default function CareersPage() {
       await apiClient.post('/api/applications', {
         job_id: selectedJobId,
         ...applicationForm,
+        resume_url: resumeUrl || undefined,
       })
       setApplicationMessage('Application submitted successfully! We will review your materials and follow up soon.')
       setApplicationForm({ applicant_name: '', email: '', phone: '' })
       setSelectedJobId(null)
+      setResumeUrl('')
+      setUploadMessage('')
     } catch (error: any) {
       console.error('Job application failed:', error)
       setApplicationError(error?.response?.data?.error || 'Unable to submit application. Please try again.')
@@ -240,6 +255,19 @@ export default function CareersPage() {
                                 className="mt-2 w-full rounded-lg border border-light-gray p-3"
                               />
                             </label>
+                          </div>
+                          <div className="mt-6">
+                            <FileUpload
+                              onUploadSuccess={handleUploadSuccess}
+                              onUploadError={handleUploadError}
+                              accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif,.txt"
+                            />
+                            {resumeUrl && (
+                              <p className="mt-3 text-sm text-green">Resume uploaded: <a href={resumeUrl} target="_blank" rel="noreferrer" className="underline">View file</a></p>
+                            )}
+                            {uploadMessage && (
+                              <p className="mt-3 text-sm text-text-muted">{uploadMessage}</p>
+                            )}
                           </div>
                           <button type="submit" className="btn-secondary">
                             Submit Application

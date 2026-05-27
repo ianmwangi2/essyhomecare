@@ -218,10 +218,13 @@ VITE_API_URL=http://localhost:5000
 SUPABASE_URL=https://your-project-id.supabase.co
 SUPABASE_SERVICE_KEY=your-service-key-here
 SUPABASE_ANON_KEY=your-anon-key-here
+SUPABASE_STORAGE_BUCKET=uploads
 JWT_SECRET=your-secret-key-at-least-32-characters-long
 NODE_ENV=development
 PORT=5000
 RESEND_API_KEY=optional-for-emails
+FROM_EMAIL=no-reply@essyhomecare.com
+ADMIN_EMAIL=admin@essyhomecare.com
 ```
 
 #### 2.2 Install Dependencies

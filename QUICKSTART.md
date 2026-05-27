@@ -25,10 +25,13 @@ VITE_API_URL=http://localhost:5000
 SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_SERVICE_KEY=your-service-key
 SUPABASE_ANON_KEY=your-anon-key
+SUPABASE_STORAGE_BUCKET=uploads
 JWT_SECRET=your-secret-key-here-min-32-chars
 NODE_ENV=development
 PORT=5000
 RESEND_API_KEY=your-resend-api-key-optional
+FROM_EMAIL=no-reply@essyhomecare.com
+ADMIN_EMAIL=admin@essyhomecare.com
 ```
 
 ### Step 3: Install Dependencies & Run Dev Servers
