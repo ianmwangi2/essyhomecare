@@ -41,7 +41,7 @@ export default function Navbar() {
             <img
               src="/essy-logo.svg"
               alt="Essy Homecare logo"
-              className="h-10 w-auto object-contain"
+              className="h-14 w-auto object-contain"
             />
           </Link>
 

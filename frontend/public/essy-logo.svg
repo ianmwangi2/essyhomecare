@@ -1,17 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" role="img" aria-label="Essy Homecare logo">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" role="img" aria-label="Essy Homecare logo">
   <defs>
     <style>
-      .logo-text { font-family: Arial, sans-serif; font-weight: bold; font-size: 16px; fill: white; }
-      .logo-sub { font-family: Arial, sans-serif; font-size: 6px; fill: #90EE90; letter-spacing: 0.5px; }
+      .essy-text { font-family: 'Arial', sans-serif; font-weight: bold; font-size: 48px; fill: #0066CC; }
+      .homecare-text { font-family: 'Arial', sans-serif; font-weight: bold; font-size: 48px; fill: #0066CC; }
+      .services-text { font-family: 'Arial', sans-serif; font-weight: 600; font-size: 20px; fill: #66BB6A; }
+      .checkmark { stroke: #66BB6A; stroke-width: 2; fill: none; }
     </style>
   </defs>
   
-  <!-- Main "essy homecare" text -->
-  <text x="2" y="18" class="logo-text">essy homecare</text>
+  <!-- "essy" text -->
+  <text x="0" y="50" class="essy-text">essy</text>
   
-  <!-- Subtitle -->
-  <text x="2" y="28" class="logo-sub">&amp; NURSING SERVICES</text>
+  <!-- Green checkmark/leaf accent on y -->
+  <g transform="translate(95, 18)">
+    <circle cx="0" cy="0" r="8" fill="#66BB6A" opacity="0.15"/>
+    <path d="M -4 2 L 0 5 L 4 -2" class="checkmark" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
   
-  <!-- Green accent line -->
-  <rect x="0" y="32" width="120" height="1" fill="#90EE90"/>
+  <!-- "homecare" text -->
+  <text x="110" y="50" class="homecare-text">homecare</text>
+  
+  <!-- Subtitle: "& Nursing Services" -->
+  <text x="0" y="72" class="services-text">&amp; Nursing Services</text>
 </svg>
