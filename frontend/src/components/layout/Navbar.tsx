@@ -35,13 +35,13 @@ export default function Navbar() {
 
       {/* Main navbar */}
       <nav className="bg-primary text-white sticky top-0 z-50 shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 font-heading font-bold text-xl">
             <img
               src="/essy-logo.svg"
               alt="Essy Homecare logo"
-              className="h-14 w-auto object-contain"
+              className="h-12 w-auto object-contain"
             />
           </Link>
 

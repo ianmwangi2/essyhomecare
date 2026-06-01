@@ -23,7 +23,14 @@ router.post('/', upload.single('file'), async (req, res, next) => {
     const { data: publicData, error: publicError } = supabase.storage.from(bucket).getPublicUrl(filename)
     if (publicError) return next(publicError)
 
-    res.status(201).json({ path: data.path, publicUrl: publicData.publicUrl })
+    res.status(201).json({ 
+      success: true,
+      path: data.path, 
+      publicUrl: publicData.publicUrl,
+      filename: file.originalname,
+      size: file.size,
+      type: file.mimetype
+    })
   } catch (err) {
     next(err)
   }
