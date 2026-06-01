@@ -17,6 +17,7 @@ dotenv.config()
 const app = express()
 const PORT = process.env.PORT || 5000
 
+
 const required = ['SUPABASE_URL', 'SUPABASE_SERVICE_KEY']
 const missing = required.filter((key) => !process.env[key])
 if (missing.length > 0) {
@@ -29,7 +30,8 @@ const verifyStorageBucket = async () => {
   try {
     const { data: buckets, error } = await supabase.storage.listBuckets()
     if (error) {
-      log.warn('Unable to verify Supabase storage bucket', { error: error.message })
+    log.error('Unable to verify Supabase storage bucket', error.message)
+
       return
     }
 
@@ -40,7 +42,10 @@ const verifyStorageBucket = async () => {
       log.info('Supabase storage bucket exists', { storageBucket })
     }
   } catch (err) {
-    log.warn('Error verifying Supabase storage bucket', { error: err?.message || err })
+    log.error('Error verifying Supabase storage bucket', err?.message || err)
+
+
+
   }
 }
 
@@ -66,6 +71,8 @@ app.use(express.urlencoded({ limit: '10mb', extended: true }))
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok', timestamp: new Date().toISOString() }))
 
+
+
 app.use('/api/referrals', referralRoutes)
 app.use('/api/jobs', jobRoutes)
 app.use('/api/applications', applicationRoutes)
@@ -73,7 +80,8 @@ app.use('/api/contacts', contactRoutes)
 app.use('/api/uploads', uploadRoutes)
 app.use('/api/admin', authenticateToken, adminRoutes)
 
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
+
   log.error('Unhandled server error', err)
   res.status(500).json({ error: 'Internal server error', message: process.env.NODE_ENV === 'development' ? err.message : undefined })
 })

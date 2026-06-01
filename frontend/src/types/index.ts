@@ -16,7 +16,7 @@ export interface Referral {
   diagnosis?: string
   services_requested: string[]
   preferred_contact?: string
-  preferred_office: 'tyngsboro' | 'worcester'
+  preferred_office: 'tyngsboro'
   submitter_name: string
   submitter_role?: string
   submitter_phone?: string
@@ -55,7 +55,7 @@ export interface Contact {
   email: string
   phone?: string
   message: string
-  preferred_office?: 'tyngsboro' | 'worcester'
+  preferred_office?: 'tyngsboro'
 }
 
 export interface Service {

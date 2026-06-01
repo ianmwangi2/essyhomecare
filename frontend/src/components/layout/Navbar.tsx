@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Menu, X, Phone, CheckCircle2 } from 'lucide-react'
+import { Menu, X, Phone } from 'lucide-react'
+import CHAPBadge from '../CHAPBadge'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -25,11 +26,9 @@ export default function Navbar() {
               <Phone size={14} />
               Tyngsboro: (978) 735-2745
             </span>
-            <span className="hidden md:inline">Worcester: (508) 854-4135</span>
           </div>
           <div className="flex items-center gap-2">
-            <CheckCircle2 size={14} className="text-white" />
-            <span className="font-semibold">CHAP Accredited</span>
+            <CHAPBadge size="sm" />
           </div>
         </div>
       </div>

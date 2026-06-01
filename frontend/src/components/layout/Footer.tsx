@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="bg-primary text-white mt-20">
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
@@ -59,26 +59,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Worcester Office */}
-          <div>
-            <h3 className="font-heading font-bold mb-4 text-teal">Worcester Office</h3>
-            <div className="space-y-3 text-text-muted text-sm">
-              <div className="flex gap-2">
-                <Phone size={18} className="flex-shrink-0 text-green" />
-                <p>(508) 854-4135</p>
-              </div>
-              <div className="flex gap-2">
-                <Mail size={18} className="flex-shrink-0 text-green" />
-                <p>Fax: (508) 854-4137</p>
-              </div>
-              <div className="flex gap-2">
-                <Mail size={18} className="flex-shrink-0 text-green" />
-                <a href="mailto:info@essyhomecare.com" className="hover:text-green transition-colors">
-                  info@essyhomecare.com
-                </a>
-              </div>
-            </div>
-          </div>
+
         </div>
 
         {/* Bottom */}

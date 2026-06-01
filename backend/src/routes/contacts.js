@@ -1,7 +1,7 @@
 import express from 'express'
 import { supabase } from '../lib/supabase.js'
 import { validateContact } from '../lib/validators.js'
-import axios from 'axios'
+import { sendAdminEmail } from '../lib/sendgrid.js'
 
 const router = express.Router()
 
@@ -13,22 +13,21 @@ router.post('/', async (req, res, next) => {
     const { data: created, error } = await supabase.from('contacts').insert(data).select()
     if (error) return next(error)
 
-    if (process.env.RESEND_API_KEY) {
-      try {
-        await axios.post('https://api.resend.com/emails', {
-          from: 'no-reply@essyhomecare.com',
-          to: ['admin@essyhomecare.com'],
-          subject: 'New contact form submission',
-          html: `
-            <p><strong>Name:</strong> ${data.name}</p>
-            <p><strong>Email:</strong> ${data.email}</p>
-            <p><strong>Message:</strong></p>
-            <p>${data.message}</p>
-          `
-        }, { headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, 'Content-Type': 'application/json' } })
-      } catch (emailErr) {
-        console.warn('Resend email failed', emailErr?.message || emailErr)
-      }
+    try {
+      await sendAdminEmail({
+        subject: 'New contact form submission',
+        html: `
+          <p><strong>Name:</strong> ${data.name}</p>
+          <p><strong>Email:</strong> ${data.email}</p>
+          ${data.phone ? `<p><strong>Phone:</strong> ${data.phone}</p>` : ''}
+          ${data.preferred_office ? `<p><strong>Preferred office:</strong> ${data.preferred_office}</p>` : ''}
+          <p><strong>Message:</strong></p>
+          <p>${data.message}</p>
+        `,
+      })
+    } catch (emailErr) {
+      // Don’t fail the form submission if email sending fails.
+      console.warn('SendGrid admin email failed', emailErr?.message || emailErr)
     }
 
     res.status(201).json(created)
@@ -36,3 +35,4 @@ router.post('/', async (req, res, next) => {
 })
 
 export default router
+

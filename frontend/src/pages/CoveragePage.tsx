@@ -80,9 +80,6 @@ export default function CoveragePage() {
             <a href="tel:9787352745" className="btn-secondary">
               Call Tyngsboro: (978) 735-2745
             </a>
-            <a href="tel:5088544135" className="btn-outline">
-              Call Worcester: (508) 854-4135
-            </a>
           </div>
         </div>
       </section>

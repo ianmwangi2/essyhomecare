@@ -10,7 +10,7 @@ const contactSchema = z.object({
   email: z.string().email('Valid email required'),
   phone: z.string().optional(),
   message: z.string().min(10, 'Message must be at least 10 characters'),
-  preferred_office: z.enum(['', 'tyngsboro', 'worcester']).optional(),
+  preferred_office: z.enum(['', 'tyngsboro']).optional(),
 })
 
 type ContactForm = z.infer<typeof contactSchema>
@@ -48,7 +48,7 @@ export default function ContactPage() {
       {/* Contact cards */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          <div className="grid grid-cols-1 gap-8 mb-16">
             {/* Tyngsboro */}
             <div className="card p-8 border-t-4 border-teal">
               <h2 className="font-heading font-bold text-xl text-teal mb-6">Tyngsboro Office</h2>
@@ -70,33 +70,6 @@ export default function ContactPage() {
                 <div>
                   <p className="font-semibold text-primary">Fax</p>
                   <p>(978) 328-0364</p>
-                </div>
-                <div>
-                  <p className="font-semibold text-primary">Hours</p>
-                  <p>24/7 Admissions</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Worcester */}
-            <div className="card p-8 border-t-4 border-green">
-              <h2 className="font-heading font-bold text-xl text-green mb-6">Worcester Office</h2>
-              <div className="space-y-4 text-text-muted">
-                <div>
-                  <p className="font-semibold text-primary">Phone</p>
-                  <a href="tel:5088544135" className="text-green hover:text-orange transition-colors">
-                    (508) 854-4135
-                  </a>
-                </div>
-                <div>
-                  <p className="font-semibold text-primary">Fax</p>
-                  <p>(508) 854-4137</p>
-                </div>
-                <div>
-                  <p className="font-semibold text-primary">Email</p>
-                  <a href="mailto:info@essyhomecare.com" className="text-green hover:text-orange transition-colors">
-                    info@essyhomecare.com
-                  </a>
                 </div>
                 <div>
                   <p className="font-semibold text-primary">Hours</p>
@@ -153,17 +126,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div>
-                <label className="block text-sm font-semibold text-primary mb-2">Preferred Office</label>
-                <select
-                  {...register('preferred_office')}
-                  className="w-full px-4 py-2 border border-light-gray rounded-lg focus:outline-none focus:ring-2 focus:ring-teal"
-                >
-                  <option value="">Select</option>
-                  <option value="tyngsboro">Tyngsboro</option>
-                  <option value="worcester">Worcester</option>
-                </select>
-              </div>
+
 
               <div>
                 <label className="block text-sm font-semibold text-primary mb-2">Message *</label>
