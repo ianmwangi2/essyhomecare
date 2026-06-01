@@ -1,7 +1,7 @@
 import express from 'express'
 import { supabase } from '../lib/supabase.js'
 import { validateContact } from '../lib/validators.js'
-import { sendAdminEmail } from '../lib/sendgrid.js'
+import { sendAdminEmail } from '../lib/resend.js'
 
 const router = express.Router()
 
