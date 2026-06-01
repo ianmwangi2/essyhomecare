@@ -20,7 +20,7 @@ const referralSchema = z.object({
   diagnosis: z.string().optional(),
   services_requested: z.array(z.string()).min(1, 'Select at least one service'),
   preferred_contact: z.enum(['', 'Phone', 'Email', 'Fax']).optional(),
-  preferred_office: z.enum(['', 'tyngsboro', 'worcester'], {
+  preferred_office: z.enum(['', 'tyngsboro'], {
     errorMap: () => ({ message: 'Select an office' })
   }),
   submitter_name: z.string().min(1, 'Your name required'),
@@ -231,15 +231,7 @@ export default function ReferralsPage() {
                     <option value="Fax">Fax</option>
                   </select>
                 </div>
-                <div>
-                  <label className="block text-sm font-semibold text-primary mb-2">Preferred Office *</label>
-                  <select {...register('preferred_office')} className="w-full px-4 py-2 border border-light-gray rounded-lg focus:outline-none focus:ring-2 focus:ring-teal">
-                    <option value="">Select</option>
-                    <option value="tyngsboro">Tyngsboro</option>
-                    <option value="worcester">Worcester</option>
-                  </select>
-                  {errors.preferred_office && <p className="text-red-500 text-sm mt-1">{errors.preferred_office.message}</p>}
-                </div>
+
               </div>
             </fieldset>
 
@@ -304,18 +296,12 @@ export default function ReferralsPage() {
       <section className="bg-light-gray py-16">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="section-heading text-center mb-12">Or Contact Us Directly</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="max-w-md mx-auto">
             <div className="card p-8">
               <h3 className="font-heading font-bold text-lg text-teal mb-4">Tyngsboro Office</h3>
               <p className="mb-2 flex items-center gap-2"><Phone className="w-4 h-4 text-teal" /> (978) 735-2745</p>
               <p className="mb-2 flex items-center gap-2"><Phone className="w-4 h-4 text-teal" /> (978) 251-2748</p>
               <p className="mb-4 flex items-center gap-2"><Printer className="w-4 h-4 text-teal" /> (978) 328-0364</p>
-              <p className="text-sm text-text-muted">Fax is available 24/7</p>
-            </div>
-            <div className="card p-8">
-              <h3 className="font-heading font-bold text-lg text-teal mb-4">Worcester Office</h3>
-              <p className="mb-2 flex items-center gap-2"><Phone className="w-4 h-4 text-teal" /> (508) 854-4135</p>
-              <p className="mb-4 flex items-center gap-2"><Printer className="w-4 h-4 text-teal" /> (508) 854-4137</p>
               <p className="text-sm text-text-muted">Fax is available 24/7</p>
             </div>
           </div>
