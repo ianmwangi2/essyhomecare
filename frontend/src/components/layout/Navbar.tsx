@@ -37,7 +37,7 @@ export default function Navbar() {
       <nav className="bg-primary text-white sticky top-0 z-50 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center font-heading font-bold text-xl flex-shrink-0">
+          <Link to="/" className="flex items-center font-heading font-bold text-xl flex-shrink-0 min-w-fit">
             <img
               src="/essy-logo.svg"
               alt="Essy Homecare logo"

@@ -1,25 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" role="img" aria-label="Essy Homecare logo">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" role="img" aria-label="Essy Homecare logo">
   <defs>
     <style>
       .essy-text { font-family: 'Arial', sans-serif; font-weight: bold; font-size: 48px; fill: #0066CC; }
       .homecare-text { font-family: 'Arial', sans-serif; font-weight: bold; font-size: 48px; fill: #0066CC; }
-      .services-text { font-family: 'Arial', sans-serif; font-weight: 600; font-size: 20px; fill: #66BB6A; }
+      .services-text { font-family: 'Arial', sans-serif; font-weight: 600; font-size: 16px; fill: #66BB6A; }
       .checkmark { stroke: #66BB6A; stroke-width: 2; fill: none; }
     </style>
   </defs>
   
   <!-- "essy" text -->
-  <text x="0" y="50" class="essy-text">essy</text>
+  <text x="0" y="55" class="essy-text">essy</text>
   
   <!-- Green checkmark/leaf accent on y -->
-  <g transform="translate(95, 18)">
+  <g transform="translate(95, 23)">
     <circle cx="0" cy="0" r="8" fill="#66BB6A" opacity="0.15"/>
     <path d="M -4 2 L 0 5 L 4 -2" class="checkmark" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
   
   <!-- "homecare" text -->
-  <text x="110" y="50" class="homecare-text">homecare</text>
+  <text x="115" y="55" class="homecare-text">homecare</text>
   
   <!-- Subtitle: "& Nursing Services" -->
-  <text x="0" y="72" class="services-text">&amp; Nursing Services</text>
+  <text x="0" y="80" class="services-text">&amp; Nursing Services</text>
 </svg>
