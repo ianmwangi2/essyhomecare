@@ -1,21 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" role="img" aria-label="Essy Homecare logo">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" role="img" aria-label="Essy Homecare logo">
   <defs>
     <style>
-      .logo-text-main { font-family: Arial, sans-serif; font-weight: bold; font-size: 24px; fill: #1B5E8A; }
-      .logo-text-sub { font-family: Arial, sans-serif; font-weight: 600; font-size: 8px; fill: #5DB75D; }
+      .logo-text { font-family: Arial, sans-serif; font-weight: bold; font-size: 16px; fill: white; }
+      .logo-sub { font-family: Arial, sans-serif; font-size: 6px; fill: #90EE90; letter-spacing: 0.5px; }
     </style>
   </defs>
   
-  <!-- "essy" text -->
-  <text x="0" y="25" class="logo-text-main">essy</text>
-  
-  <!-- Green checkmark/accent -->
-  <circle cx="52" cy="12" r="4" fill="#5DB75D" opacity="0.2"/>
-  <path d="M 50 14 L 52 16 L 54 12" stroke="#5DB75D" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  
-  <!-- "homecare" text -->
-  <text x="60" y="25" class="logo-text-main">homecare</text>
+  <!-- Main "essy homecare" text -->
+  <text x="2" y="18" class="logo-text">essy homecare</text>
   
   <!-- Subtitle -->
-  <text x="0" y="38" class="logo-text-sub">&amp; Nursing Services</text>
+  <text x="2" y="28" class="logo-sub">&amp; NURSING SERVICES</text>
+  
+  <!-- Green accent line -->
+  <rect x="0" y="32" width="120" height="1" fill="#90EE90"/>
 </svg>
