@@ -25,8 +25,10 @@ export default function CHAPBadge({ variant = 'inline', size = 'md' }: CHAPBadge
           <Award className="text-white" size={size === 'lg' ? 40 : size === 'md' ? 28 : 16} />
         </div>
         <div className="text-center">
-          <p className={`${textSizeClasses[size]} font-bold text-primary`}>CHAP</p>
-          <p className={`${textSizeClasses[size]} text-text-muted`}>Accredited</p>
+          <p className={`${textSizeClasses[size]} font-bold text-primary`}>CHAP Accredited</p>
+          <p className={`${textSizeClasses[size]} text-text-muted`}>Community Health</p>
+          <p className={`${textSizeClasses[size]} text-text-muted`}>Accreditation Program</p>
+          <p className={`${textSizeClasses[size]} text-text-muted font-semibold mt-1`}>Certified Health Care Agency</p>
         </div>
       </div>
     )
