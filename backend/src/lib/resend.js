@@ -4,14 +4,15 @@ import { log } from './logger.js'
 
 dotenv.config()
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 const required = ['RESEND_API_KEY', 'FROM_EMAIL', 'ADMIN_EMAIL']
 const missing = required.filter((k) => !process.env[k])
 
+let resend = null
 // Don't hard-fail app startup; just disable email sending if misconfigured.
 if (missing.length > 0) {
   log.error('Resend not configured; email sending disabled', { missing })
+} else {
+  resend = new Resend(process.env.RESEND_API_KEY)
 }
 
 const buildHtmlWrapper = (innerHtml) => `
@@ -27,7 +28,7 @@ const buildHtmlWrapper = (innerHtml) => `
 `
 
 export const sendAdminEmail = async ({ subject, html }) => {
-  if (!process.env.RESEND_API_KEY || !process.env.FROM_EMAIL || !process.env.ADMIN_EMAIL) {
+  if (!resend || !process.env.RESEND_API_KEY || !process.env.FROM_EMAIL || !process.env.ADMIN_EMAIL) {
     log.warn('SendAdminEmail skipped; Resend env vars missing')
     return
   }
@@ -53,7 +54,7 @@ export const sendAdminEmail = async ({ subject, html }) => {
 }
 
 export const sendConfirmationEmail = async ({ to, subject, html }) => {
-  if (!process.env.RESEND_API_KEY || !process.env.FROM_EMAIL) {
+  if (!resend || !process.env.RESEND_API_KEY || !process.env.FROM_EMAIL) {
     log.warn('SendConfirmationEmail skipped; Resend env vars missing')
     return
   }
