@@ -1,7 +1,7 @@
 import express from 'express'
 import { supabase } from '../lib/supabase.js'
 import { validateReferral } from '../lib/validators.js'
-import { sendAdminEmail, sendConfirmationEmail } from '../lib/resend.js'
+import { sendReferralEmails } from '../services/referralEmailService.js'
 
 const router = express.Router()
 
@@ -25,44 +25,9 @@ router.post('/', async (req, res, next) => {
 
     // Send admin notification + confirmation (fail-safe: don’t break submission).
     try {
-      await sendAdminEmail({
-        subject: 'New referral submitted',
-        html: `
-          <p><strong>Patient:</strong> ${created.patient_first_name} ${created.patient_last_name}</p>
-          ${created.dob ? `<p><strong>DOB:</strong> ${created.dob}</p>` : ''}
-          ${created.gender ? `<p><strong>Gender:</strong> ${created.gender}</p>` : ''}
-          ${created.address ? `<p><strong>Address:</strong> ${created.address}</p>` : ''}
-          ${created.city ? `<p><strong>City:</strong> ${created.city}</p>` : ''}
-          ${created.state ? `<p><strong>State:</strong> ${created.state}</p>` : ''}
-          ${created.zip ? `<p><strong>ZIP:</strong> ${created.zip}</p>` : ''}
-          <p><strong>Phone:</strong> ${created.phone}</p>
-          ${created.insurance_type ? `<p><strong>Insurance:</strong> ${created.insurance_type}</p>` : ''}
-          ${created.referring_physician ? `<p><strong>Referring Physician:</strong> ${created.referring_physician}</p>` : ''}
-          ${created.referring_facility ? `<p><strong>Referring Facility:</strong> ${created.referring_facility}</p>` : ''}
-          ${created.diagnosis ? `<p><strong>Diagnosis:</strong> ${created.diagnosis}</p>` : ''}
-          ${Array.isArray(created.services_requested) ? `<p><strong>Services Requested:</strong> ${created.services_requested.join(', ')}</p>` : ''}
-          ${created.preferred_contact ? `<p><strong>Preferred Contact:</strong> ${created.preferred_contact}</p>` : ''}
-          ${created.preferred_office ? `<p><strong>Preferred Office:</strong> ${created.preferred_office}</p>` : ''}
-          <hr/>
-          <p><strong>Submitter:</strong> ${created.submitter_name}</p>
-          ${created.submitter_role ? `<p><strong>Role:</strong> ${created.submitter_role}</p>` : ''}
-          ${created.submitter_phone ? `<p><strong>Submitter Phone:</strong> ${created.submitter_phone}</p>` : ''}
-          <p><strong>Submitter Email:</strong> ${created.submitter_email}</p>
-        `,
-      })
-
-      await sendConfirmationEmail({
-        to: created.submitter_email,
-        subject: 'Essy Homecare — We received your referral',
-        html: `
-          <p>Hi ${created.submitter_name || 'there'},</p>
-          <p>Thanks for submitting your referral. Our team will review it and reach out to coordinate next steps.</p>
-          <p>If you need to make changes, you can reply to this email.</p>
-          <p style="margin-top: 16px;">— Essy Homecare</p>
-        `,
-      })
+      await sendReferralEmails(created)
     } catch (emailErr) {
-      console.warn('SendGrid referral email failed', emailErr?.message || emailErr)
+      console.warn('Referral email failed', emailErr?.message || emailErr)
     }
 
     res.status(201).json(data)

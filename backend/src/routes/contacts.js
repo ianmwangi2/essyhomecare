@@ -1,7 +1,7 @@
 import express from 'express'
 import { supabase } from '../lib/supabase.js'
 import { validateContact } from '../lib/validators.js'
-import { sendAdminEmail } from '../lib/resend.js'
+import { sendContactNotification } from '../services/contactEmailService.js'
 
 const router = express.Router()
 
@@ -14,20 +14,10 @@ router.post('/', async (req, res, next) => {
     if (error) return next(error)
 
     try {
-      await sendAdminEmail({
-        subject: 'New contact form submission',
-        html: `
-          <p><strong>Name:</strong> ${data.name}</p>
-          <p><strong>Email:</strong> ${data.email}</p>
-          ${data.phone ? `<p><strong>Phone:</strong> ${data.phone}</p>` : ''}
-          ${data.preferred_office ? `<p><strong>Preferred office:</strong> ${data.preferred_office}</p>` : ''}
-          <p><strong>Message:</strong></p>
-          <p>${data.message}</p>
-        `,
-      })
+      await sendContactNotification(data)
     } catch (emailErr) {
-      // Don’t fail the form submission if email sending fails.
-      console.warn('SendGrid admin email failed', emailErr?.message || emailErr)
+      // Don't fail the form submission if email sending fails.
+      console.warn('Contact notification email failed', emailErr?.message || emailErr)
     }
 
     res.status(201).json(created)
