@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { CheckCircle2, Phone, Printer } from 'lucide-react'
+import apiClient from '../lib/api'
 
 const referralSchema = z.object({
   patient_first_name: z.string().min(1, 'First name required'),
