@@ -80,6 +80,10 @@ app.use('/api/contacts', contactRoutes)
 app.use('/api/uploads', uploadRoutes)
 app.use('/api/admin', authenticateToken, adminRoutes)
 
+// Alias singular endpoints
+app.use('/api/contact', contactRoutes)
+app.use('/api/referral', referralRoutes)
+
 app.use((err, req, res) => {
 
   log.error('Unhandled server error', err)

@@ -1,7 +1,7 @@
 import express from 'express'
 import { supabase } from '../lib/supabase.js'
 import { validateApplication } from '../lib/validators.js'
-import { sendApplicationEmails } from '../services/applicationEmailService.js'
+import { jobApplicationReply, jobApplicationAlert } from '../lib/emailService.js'
 
 const router = express.Router()
 
@@ -24,9 +24,12 @@ router.post('/', async (req, res, next) => {
     const app = Array.isArray(created) ? created[0] : created
 
     try {
-      await sendApplicationEmails(app)
+      await Promise.all([
+        jobApplicationReply({ to: app.email, applicantName: app.applicant_name, position: app.job_id }),
+        jobApplicationAlert({ applicantName: app.applicant_name, applicantEmail: app.email, position: app.job_id, cvLink: app.resume_url }),
+      ])
     } catch (emailErr) {
-      console.warn('Application email failed', emailErr?.message || emailErr)
+      console.warn('Application emails failed', emailErr?.message || emailErr)
     }
 
     res.status(201).json(created)

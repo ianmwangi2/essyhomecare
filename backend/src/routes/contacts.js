@@ -1,7 +1,7 @@
 import express from 'express'
 import { supabase } from '../lib/supabase.js'
 import { validateContact } from '../lib/validators.js'
-import { sendContactNotification } from '../services/contactEmailService.js'
+import { contactAutoReply, contactInternalAlert } from '../lib/emailService.js'
 
 const router = express.Router()
 
@@ -14,10 +14,13 @@ router.post('/', async (req, res, next) => {
     if (error) return next(error)
 
     try {
-      await sendContactNotification(data)
+      await Promise.all([
+        contactAutoReply({ to: data.email, name: data.name }),
+        contactInternalAlert({ name: data.name, email: data.email, message: data.message }),
+      ])
     } catch (emailErr) {
       // Don't fail the form submission if email sending fails.
-      console.warn('Contact notification email failed', emailErr?.message || emailErr)
+      console.warn('Contact emails failed', emailErr?.message || emailErr)
     }
 
     res.status(201).json(created)

@@ -1,7 +1,7 @@
 import express from 'express'
 import { supabase } from '../lib/supabase.js'
 import { validateReferral } from '../lib/validators.js'
-import { sendReferralEmails } from '../services/referralEmailService.js'
+import { referralConfirmation, referralInternalAlert } from '../lib/emailService.js'
 
 const router = express.Router()
 
@@ -25,9 +25,22 @@ router.post('/', async (req, res, next) => {
 
     // Send admin notification + confirmation (fail-safe: don’t break submission).
     try {
-      await sendReferralEmails(created)
+      await Promise.all([
+        referralInternalAlert({
+          referrerName: created.submitter_name,
+          referrerEmail: created.submitter_email,
+          patientName: `${created.patient_first_name} ${created.patient_last_name}`,
+          patientContact: created.phone,
+          notes: created.diagnosis || '',
+        }),
+        referralConfirmation({
+          to: created.submitter_email,
+          referrerName: created.submitter_name,
+          patientName: `${created.patient_first_name} ${created.patient_last_name}`,
+        }),
+      ])
     } catch (emailErr) {
-      console.warn('Referral email failed', emailErr?.message || emailErr)
+      console.warn('Referral emails failed', emailErr?.message || emailErr)
     }
 
     res.status(201).json(data)
