@@ -1,14 +1,17 @@
 {
-  "buildCommand": "if [ -d frontend ]; then cd frontend && npm run build && cp -r dist ../dist; else npm run build; fi",
-  "outputDirectory": "dist",
-  "rewrites": [
+  "buildCommand": "cd frontend && npm run build",
+  "outputDirectory": "frontend/dist",
+  "routes": [
     {
-      "source": "/api/(.*)",
-      "destination": "https://essyhomecare-backend.onrender.com/api/$1"
+      "src": "/api/(.*)",
+      "dest": "https://essyhomecare-backend.onrender.com/api/$1"
     },
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "handle": "filesystem"
+    },
+    {
+      "src": "/.*",
+      "dest": "/index.html"
     }
   ]
 }
