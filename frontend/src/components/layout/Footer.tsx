@@ -10,7 +10,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-3 mb-4">
               <img
-                src="/essy-logo.png"
+                src="/essy-logo.svg"
                 alt="Essy Homecare logo"
                 className="h-8 sm:h-10 md:h-12 w-auto object-contain"
               />

@@ -73,7 +73,7 @@ export default function AdminLoginPage() {
         {/* Logo */}
         <div className="text-center mb-8">
           <img
-            src="/essy-logo.png"
+            src="/essy-logo.svg"
             alt="Essy Homecare logo"
             className="mx-auto mb-4 h-12 sm:h-14 md:h-16 w-auto object-contain"
           />
