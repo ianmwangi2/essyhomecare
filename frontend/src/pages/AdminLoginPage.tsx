@@ -73,9 +73,9 @@ export default function AdminLoginPage() {
         {/* Logo */}
         <div className="text-center mb-8">
           <img
-            src="/essy-logo.svg"
+            src="/essy-logo.png"
             alt="Essy Homecare logo"
-            className="mx-auto mb-4 h-16 w-auto object-contain"
+            className="mx-auto mb-4 h-12 sm:h-14 md:h-16 w-auto object-contain"
           />
           <h1 className="text-2xl font-heading font-bold text-primary">
             Essy Admin Portal

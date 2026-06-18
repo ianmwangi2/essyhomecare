@@ -10,9 +10,9 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-3 mb-4">
               <img
-                src="/essy-logo.svg"
+                src="/essy-logo.png"
                 alt="Essy Homecare logo"
-                className="h-10 w-auto object-contain"
+                className="h-8 sm:h-10 md:h-12 w-auto object-contain"
               />
             </div>
             <p className="text-text-muted">CHAP-accredited home healthcare services across Massachusetts.</p>

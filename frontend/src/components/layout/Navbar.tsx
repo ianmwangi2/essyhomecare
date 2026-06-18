@@ -39,9 +39,9 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center font-heading font-bold text-xl flex-shrink-0 min-w-fit">
             <img
-              src="/essy-logo.svg"
+              src="/essy-logo.png"
               alt="Essy Homecare logo"
-              className="h-16 w-auto object-contain"
+              className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain"
             />
           </Link>
 

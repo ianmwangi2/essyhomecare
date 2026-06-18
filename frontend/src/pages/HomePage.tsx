@@ -153,21 +153,13 @@ export default function HomePage() {
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-12">
             Making a Referral is EASY
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-teal/20 p-8 rounded-lg">
+          <div className="grid grid-cols-1 gap-8 justify-items-center">
+            <div className="bg-teal/20 p-8 rounded-lg w-full md:w-3/4 lg:w-1/2 mx-auto">
               <h3 className="font-heading font-bold text-xl mb-3 text-teal">Tyngsboro Office</h3>
               <p className="mb-2 flex items-center gap-2"><Phone className="w-4 h-4 text-teal" /> (978) 735-2745</p>
               <p className="mb-2 flex items-center gap-2"><Phone className="w-4 h-4 text-teal" /> Alt: (978) 251-2748</p>
               <p className="mb-4 flex items-center gap-2"><Printer className="w-4 h-4 text-teal" /> Fax: (978) 328-0364</p>
               <p className="text-sm text-light-gray">Referrals accepted 7 days a week</p>
-            </div>
-            <div className="bg-green/20 p-8 rounded-lg">
-              <h3 className="font-heading font-bold text-xl mb-3 text-green">Worcester Office</h3>
-              <p className="mb-2 flex items-center gap-2"><Phone className="w-4 h-4 text-teal" /> (508) 854-4135</p>
-              <p className="mb-4 flex items-center gap-2"><Printer className="w-4 h-4 text-teal" /> Fax: (508) 854-4137</p>
-              <Link to="/referrals" className="btn-primary inline-block mt-4">
-                Submit Online Referral
-              </Link>
             </div>
           </div>
         </div>

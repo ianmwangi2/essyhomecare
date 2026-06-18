@@ -53,10 +53,10 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #4BBDCC;
+  background: #3A8EBA;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1A2A3B;
+  background: #2F78A0;
 }

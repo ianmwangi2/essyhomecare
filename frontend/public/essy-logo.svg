@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" role="img" aria-label="Essy Homecare logo">
   <defs>
     <style>
-      .essy-text { font-family: 'Arial', sans-serif; font-weight: bold; font-size: 48px; fill: #0066CC; }
-      .homecare-text { font-family: 'Arial', sans-serif; font-weight: bold; font-size: 48px; fill: #0066CC; }
+      .essy-text { font-family: 'Arial', sans-serif; font-weight: bold; font-size: 48px; fill: #3A8EBA; }
+      .homecare-text { font-family: 'Arial', sans-serif; font-weight: bold; font-size: 48px; fill: #3A8EBA; }
       .services-text { font-family: 'Arial', sans-serif; font-weight: 600; font-size: 16px; fill: #66BB6A; }
       .checkmark { stroke: #66BB6A; stroke-width: 2; fill: none; }
     </style>
